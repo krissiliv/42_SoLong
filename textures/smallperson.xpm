@@ -1,0 +1,27 @@
+/* XPM */
+static char *large_person_darkblue_background_xpm[] = {
+    "20 20 3 1",
+    "   c #007EA7",
+    ".  c #000000",
+    "X  c #000000",
+    "                     ",
+    "                     ",
+    "                     ",
+    "            ..       ",
+    "           ....      ",
+    "           ....      ",
+    "           .XX.      ",
+    "           XXXX      ",
+    "           XXXX      ",
+    "           XXXX      ",
+    "           XXXX      ",
+    "          XXXXXX     ",
+    "          XXXXXX     ",
+    "          XXXXXX     ",
+    "           XXXX      ",
+    "          XXXXXX     ",
+    "          XXXXXX     ",
+    "                     ",
+    "                     ",
+    "                     "
+};
