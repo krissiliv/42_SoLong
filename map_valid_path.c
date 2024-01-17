@@ -19,12 +19,12 @@ static void	search_path_rec(char **berlines, t_mlx_data mlxdata, int px, int py)
 	if (berlines == NULL || berlines[0] == NULL)
 		return (finish(mlxdata, 1, 0));
 	curr = berlines[py][px];
-	if (curr == 'P' || curr == '0')
+	if (curr == 'P' || curr == '0') //put '1' for 'already visited'
 		berlines[py][px] = '1';
 	else if (curr == 'C')
 	{
-		mlxdata.map.chcoll += 1;
-		berlines[py][px] = '1';
+		mlxdata.map.chcoll += 1; // add i to the number of collected collectibles
+		berlines[py][px] = '1'; // put '1' for 'already visited'
 	}
 	else if (curr == 'E')
 	{
@@ -33,13 +33,13 @@ static void	search_path_rec(char **berlines, t_mlx_data mlxdata, int px, int py)
 	}
 	else
 		return ;
-	search_path_rec(berlines, mlxdata, px + 1, py);
+	search_path_rec(berlines, mlxdata, px + 1, py); // search in all directions
 	search_path_rec(berlines, mlxdata, px - 1, py);
 	search_path_rec(berlines, mlxdata, px, py + 1);
 	search_path_rec(berlines, mlxdata, px, py - 1);
 }
 
-static char	**berlines_dup(t_mlx_data mlxdata)
+static char	**berlines_dup(t_mlx_data mlxdata) // duplicate lines of .ber file to not overwrite the original during path search
 {
 	char	**berl_dup;
 	int		i;

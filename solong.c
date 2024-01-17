@@ -44,7 +44,7 @@ static void	init_mlxdata(t_mlx_data *mlxdata)
 static void	initialize(t_mlx_data *mlxdata)
 {
 	init_mlxdata(mlxdata);
-	map_getdim(mlxdata);
+	map_getdim(mlxdata);  //sets win_dim[0] and win_dim[1] as well
 	if (mlxdata->win_dim[0] == 0)
 		return (finish(*mlxdata, 1, 1));
 	mlxdata->wscale = mlxdata->pdata.width;
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	mlxdata.map.path = argv[argc - 1];
-	mlxdata.connection = mlx_init();
+	mlxdata.connection = mlx_init();  // to establish connection with X-window server (X-server)
 	if (mlxdata.connection == NULL)
 		return (1);
 	mlxdata.movenum = 0;
@@ -84,12 +84,12 @@ int	main(int argc, char **argv)
 	if (parse_map(&mlxdata) < 0)
 		return (finish(mlxdata, 1, 4), 1);
 	mlxdata.window = mlx_new_window(mlxdata.connection,
-			mlxdata.win_dim[0], mlxdata.win_dim[1], "Pia's Game");
+			mlxdata.win_dim[0], mlxdata.win_dim[1], "Pia's Game"); // open a window in which we can draw/put stuff
 	if (mlxdata.window == NULL)
 		return (finish(mlxdata, 1, 3), 1);
 	put_map(&mlxdata, true);
-	mlx_key_hook(mlxdata.window, input_processing, &mlxdata);
-	mlx_hook(mlxdata.window, 17, 0, close_window, &mlxdata);
-	mlx_loop(mlxdata.connection);
-	return (finish(mlxdata, 0, 0), 0);
+	mlx_key_hook(mlxdata.window, input_processing, &mlxdata); // proceeds to function input_processing every time we have a key release
+	mlx_hook(mlxdata.window, 17, 0, close_window, &mlxdata); // 17 corresponds to the "close window" event
+	mlx_loop(mlxdata.connection); // now need a loop to keep window open
+	return (finish(mlxdata, 0, 0), 0);  // to close connection with X-server
 }

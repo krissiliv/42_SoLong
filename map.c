@@ -27,7 +27,7 @@ int	parse_map(t_mlx_data *mlxdata)
 	berpath = open(mlxdata->map.path, O_RDONLY);
 	if (berpath == -1)
 		return (finish(*mlxdata, 1, 1), -1);
-	while (i < mlxdata->win_dim[1] / mlxdata->wscale)
+	while (i < mlxdata->win_dim[1] / mlxdata->wscale) // fill all lines of ber into mlxdata->map.berlines
 	{
 		mlxdata->map.berlines[i] = get_next_line(berpath);
 		if (!mlxdata->map.berlines[i])
@@ -52,12 +52,12 @@ static void	set_walloc(t_mlx_data *mlxdata, int i, size_t j)
 			i != 0 && i * mlxdata->wscale != \
 			mlxdata->win_dim[1] - mlxdata->wscale)
 	{
-		mlxdata->map.wallwloc[mlxdata->map.wallnum++] = j * scl;
+		mlxdata->map.wallwloc[mlxdata->map.wallnum++] = j * scl; // wallnum is the number of walls within
 		mlxdata->map.wallwloc[mlxdata->map.wallnum++] = i * scl;
 	}
 	else if (mlxdata->map.berlines[i][j] == '1')
 	{
-		mlxdata->map.wallsloc[mlxdata->map.wallsnum++] = j * scl;
+		mlxdata->map.wallsloc[mlxdata->map.wallsnum++] = j * scl; // wallsnum is the number of walls surrounding
 		mlxdata->map.wallsloc[mlxdata->map.wallsnum++] = i * scl;
 	}
 }

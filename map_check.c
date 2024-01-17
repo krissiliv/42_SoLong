@@ -12,7 +12,7 @@
 
 #include "solong.h"
 
-static void	char_check(t_mlx_data *mlxdata, int i, int *c)
+static void	char_check(t_mlx_data *mlxdata, int i, int *c) // locate the player, the exit and the collectibles
 {
 	int	j;
 
@@ -41,7 +41,7 @@ static void	char_check(t_mlx_data *mlxdata, int i, int *c)
 	}
 }
 
-static int	wall_surr_check(char *str, bool strt_end)
+static int	wall_surr_check(char *str, bool strt_end) // look for '1' at the beginning and the end of each line
 {
 	int	j;
 
@@ -62,7 +62,7 @@ static int	wall_surr_check(char *str, bool strt_end)
 	return (0);
 }
 
-static int	map_comp_check(t_mlx_data mlxdata)
+static int	map_comp_check(t_mlx_data mlxdata) // check if the map is composed of only '0', '1', 'P', 'C', 'E' and '\n'
 {
 	int		i;
 	int		j;
@@ -85,7 +85,7 @@ static int	map_comp_check(t_mlx_data mlxdata)
 	return (0);
 }
 
-int	map_check(t_mlx_data *mlxdata)
+int	map_check(t_mlx_data *mlxdata) // check if the map is valid
 {
 	int	i;
 	int	c;
@@ -110,6 +110,6 @@ int	map_check(t_mlx_data *mlxdata)
 		mlxdata->map.exit != 1 || \
 		wall_surr_check(mlxdata->map.berlines[i], true) == -1 || \
 		valid_path(*mlxdata) == -1)
-		return (-1);
+		return (-1); // all lines should have the same length
 	return (0);
 }

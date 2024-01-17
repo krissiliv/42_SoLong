@@ -17,7 +17,7 @@ int	close_window(t_mlx_data *mlxdata)
 	return (finish(*mlxdata, 0, 0), 0);
 }
 
-static int	check_cond1(t_mlx_data *mlxdata, int *wall, int w, int cond)
+static int	check_cond1(t_mlx_data *mlxdata, int *wall, int w, int cond) // check if the player is close to a wall
 {
 	if (cond == 1 && \
 		abs(wall[w + 1] + mlxdata->pdata.hight - mlxdata->pdata.loc_y) <= \
@@ -38,7 +38,7 @@ static int	check_cond1(t_mlx_data *mlxdata, int *wall, int w, int cond)
 	return (0);
 }
 
-static int	check_cond2(t_mlx_data *mlxdata, int *wall, int w, int cond)
+static int	check_cond2(t_mlx_data *mlxdata, int *wall, int w, int cond) // check if the player is close to a wall
 {
 	if (cond == 1 && \
 		((wall[w] <= mlxdata->pdata.loc_x && mlxdata->pdata.loc_x < \
@@ -68,7 +68,7 @@ char	*check_iswall(t_mlx_data *mlxdt, int *wall, int wallnum)
 	instr = (char *)malloc(16 * sizeof(char));
 	if (!instr)
 		return (finish(*mlxdt, 1, 0), NULL);
-	while (w + 2 <= 2 * wallnum)
+	while (w + 2 <= 2 * wallnum) // go through all the walls and check if the player is close to one of them
 	{
 		if (check_cond1(mlxdt, wall, w, 1) && check_cond2(mlxdt, wall, w, 1))
 			instr[i++] = 'w';
@@ -80,6 +80,6 @@ char	*check_iswall(t_mlx_data *mlxdt, int *wall, int wallnum)
 			instr[i++] = 'd';
 		w += 2;
 	}
-	instr[i] = 'x';
+	instr[i] = 'x'; // 'x' is the end of the string
 	return (instr);
 }

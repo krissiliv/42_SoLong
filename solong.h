@@ -36,23 +36,23 @@ typedef struct s_map
 	char	*path;
 	char	**berlines;
 	int		chcoll;
-	int		chex;
+	int		chex; // check exitnum (should be 1)
 	int		exit;
 	int		start_pos;
-	int		*collloc;
+	int		*collloc; // collectibles location
 	int		collnum;
-	int		*wallwloc;
-	int		wallnum;
-	int		*wallsloc;
-	int		wallsnum;
-	int		exloc[2];
+	int		*wallwloc; // walls within (inside walls) location
+	int		wallnum; // within walls number
+	int		*wallsloc; // surrounding walls location
+	int		wallsnum; // surrounding walls number
+	int		exloc[2]; // exit location
 }	t_map;
 
 typedef struct s_mlx_data
 {
 	void		*connection;
 	void		*window;
-	int			win_dim[2];
+	int			win_dim[2]; // set in map_getdim
 	int			wscale;
 	t_map		map;
 	t_person	pdata;
@@ -60,7 +60,7 @@ typedef struct s_mlx_data
 	void		*wallimg;
 	void		*collimg;
 	void		*exitimg;
-	int			movenum;
+	int			movenum; // number of movements of player (displayed in terminal)
 }	t_mlx_data;
 
 typedef unsigned char	t_byte;
