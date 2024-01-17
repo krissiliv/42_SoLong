@@ -125,19 +125,4 @@ int	main(void)
 	close(fd);
 	return (0);
 }*/
-/*
-A file descriptor is an integer number in its most basic form.
-Each file that is opened receives its number. We call it a file 
-descriptor.
-In a normal program the file descriptor 
-0 is stdin, 1 is stdout and 2 is stderr. 
-stdin is where you should read your input, 
-1 is where you should write your output and 
-2 is where you should write your error messages.
-A file descriptor is what is returned by the open() function 
-after it has been used to open a file. Once that is done, 
-we may utilize this file descriptor to carry out more actions on that file.
 
-For instance, if we wish to read data from the opened file, 
-we provide the file descriptor as input to the function that reads data.
-*/
